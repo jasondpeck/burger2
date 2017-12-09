@@ -1,0 +1,59 @@
+<div class="container">
+	<div class="row">
+		<div class="col-md-12">
+			<img src="/assets/img/burger.jpg" class="img-responsive center-block"><h5 class="text-center">(From <a href="http://www.timeout.com">timeout.com</a>)</h5>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-12">
+			<h1 class="text-center">Eat-Da-Burger!</h1>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-6">
+			<h2>Burgers Ready to be Devoured:</h2>
+			<ul>
+			{{#each burgers}}
+				{{#unless this.devoured}}
+					<li>
+					{{this.id}}. {{this.burger_name}}
+					<form action='burgers/devourBurger/{{this.id}}?_method=PUT' method='POST'>
+					<input type='hidden' name='devoured' value='true'>
+					<button type='submit' class="btn btn-default"
+					>Devour Your Burger</button>
+					</form>
+					</li>
+				{{/unless}}
+			{{/each}}
+			</ul>
+		</div>
+
+		<div class="col-md-6">
+			<h2>Burgers You Devoured:</h2>
+			<ul>
+			{{#each burgers}}
+				{{#if this.devoured}}
+					<li>
+					{{this.id}}. {{this.burger_name}}
+					</li>
+					{{/if}}
+			{{/each}}
+			</ul>
+		</div>
+	</div>
+	<hr>
+
+	<div class="row">
+		<div class="col-md-12 text-center">
+		<h2 class="text-center">Can I Take Your Order?</h2>
+			<form class="create-update-form" action="burgers/addBurger" method="POST">
+				<div class="form-group">
+					<textarea type="text" name="name"></textarea><br>
+					<button class="btn btn-default" type="submit">Submit</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
